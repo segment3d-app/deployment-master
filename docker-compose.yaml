@@ -3,7 +3,7 @@ version: '3.8'
 services:
   frontend:
     container_name: "frontend"
-    build: ./segment3d-fe
+    build: ./frontend
     ports:
       - "3000:3000"
     env_file:
@@ -13,7 +13,7 @@ services:
 
   backend:
     container_name: "backend"
-    build: ./segment3d-be
+    build: ./backend
     ports:
       - "8080:8080"
     env_file:
@@ -26,7 +26,7 @@ services:
 
   storage:
     container_name: "storage"
-    build: ./segment3d-storage
+    build: ./storage
     volumes:
       - storage_data:/app/files
     ports:
