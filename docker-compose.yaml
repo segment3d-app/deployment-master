@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  frontend:
+    container_name: "frontend"
+    build: ./segment3d-fe
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    networks:
+      - app-network
+
+  backend:
+    container_name: "backend"
+    build: ./segment3d-be
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+
+  storage:
+    container_name: "storage"
+    build: ./segment3d-storage
+    volumes:
+      - storage_data:/app/files
+    ports:
+      - "8081:8081"
+    env_file:
+      - .env
+    networks:
+      - app-network
+
+  db:
+    container_name: "db"
+    image: postgres:12.17-alpine3.19
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    env_file:
+      - .env
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
+
+volumes:
+  db_data:
+    name: "db_data"
+  storage_data:
+    name: "storage_data"
+
+networks:
+  app-network:
+    driver: bridge
