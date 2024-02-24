@@ -29,6 +29,8 @@ services:
     depends_on:
       db:
         condition: service_healthy
+      rabbit_mq:
+        condition: service_healthy
 
     command: >
       sh -c "
@@ -65,9 +67,30 @@ services:
       retries: 5
     ports:
       - "5432:5432"
+  
+  rabbit_mq:
+    container_name: "rabbit_mq"
+    image: "rabbitmq:3.12.13-management-alpine"
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+      - rabbitmq_log:/var/log/rabbitmq
+    env_file:
+      - .env
+    ports:
+      - "5672:5672" 
+      - "15672:15672"
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 volumes:
   db_data:
     name: "db_data"
   storage_data:
     name: "storage_data"
+  rabbitmq_data:
+    name: "rabbitmq_data"
+  rabbitmq_log:
+    name: "rabbitmq_log"
