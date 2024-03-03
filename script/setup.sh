@@ -3,6 +3,16 @@
 echo "Start to execute script"
 echo "============================================================"
 
+if git rev-parse --git-dir > /dev/null 2>&1; then
+    echo "Current directory is a Git repository. Pulling updates..."
+    git pull origin main
+else
+    echo "Current directory is not a Git repository."
+    exit 1
+fi
+
+echo "============================================================"
+
 clone_or_pull_repo() {
     local dir=$1
     local repo_url=$2
