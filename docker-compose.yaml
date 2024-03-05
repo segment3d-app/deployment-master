@@ -23,7 +23,7 @@ services:
       - .env
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/api/health"]
-      interval: 3600s
+      interval: 10s
       timeout: 10s
       retries: 5
     depends_on:
@@ -49,7 +49,7 @@ services:
       - .env
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8081/api/health"]
-      interval: 3600s
+      interval: 10s
       timeout: 10s
       retries: 5
 
@@ -62,7 +62,7 @@ services:
       - .env
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
-      interval: 3600s
+      interval: 10s
       timeout: 5s
       retries: 5
     ports:
@@ -81,7 +81,7 @@ services:
       - "15672:15672"
     healthcheck:
       test: rabbitmq-diagnostics -q ping
-      interval: 3600s
+      interval: 10s
       timeout: 5s
       retries: 5
 
