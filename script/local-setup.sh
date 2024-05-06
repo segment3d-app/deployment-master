@@ -5,7 +5,7 @@ echo "============================================================"
 
 ENV_FILE=".env"
 echo "Downloading $ENV_FILE from URL..."
-curl -o "$ENV_FILE" https://storage.googleapis.com/segment3d-app/.env
+curl -o "$ENV_FILE" https://storage.googleapis.com/segment3d-app/.env.local
 echo "$ENV_FILE downloaded"
 
 clone_or_pull_repo() {
@@ -23,7 +23,7 @@ clone_or_pull_repo() {
         else
             echo "'$dir' is not a Git repository."
             cd ..
-            sudo rm -rf "$dir"
+            rm -rf "$dir"
             git clone "$repo_url" "$dir"
         fi
     else
@@ -62,5 +62,5 @@ else
     exit 1
 fi
 
-sudo docker-compose up -d --build
-sudo docker image prune -f
+docker-compose up -d --build
+docker image prune -f
