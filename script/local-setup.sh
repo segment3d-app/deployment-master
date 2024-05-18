@@ -5,7 +5,7 @@ echo "============================================================"
 
 ENV_FILE=".env"
 echo "Downloading $ENV_FILE from URL..."
-curl -o "$ENV_FILE" https://storage.googleapis.com/segment3d-app/.env.local
+curl -o "$ENV_FILE" https://storage.googleapis.com/segment3d/.env
 echo "$ENV_FILE downloaded"
 
 clone_or_pull_repo() {
