@@ -3,10 +3,10 @@
 echo "Start to execute script"
 echo "============================================================"
 
-ENV_FILE=".env"
-echo "Downloading $ENV_FILE from URL..."
-curl -o "$ENV_FILE" https://storage.googleapis.com/segment3d/.env
-echo "$ENV_FILE downloaded"
+# ENV_FILE=".env"
+# echo "Downloading $ENV_FILE from URL..."
+# curl -o "$ENV_FILE" https://storage.googleapis.com/segment3d/.env
+# echo "$ENV_FILE downloaded"
 
 clone_or_pull_repo() {
     local dir=$1
