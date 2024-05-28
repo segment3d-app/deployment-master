@@ -3,6 +3,8 @@
 echo "Start to execute script"
 echo "============================================================"
 
+docker-compose down
+
 clone_or_pull_repo() {
     local dir=$1
     local repo_url=$2

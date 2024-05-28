@@ -3,6 +3,8 @@
 echo "Start to execute script"
 echo "============================================================"
 
+docker-compose down
+
 clone_or_pull_repo() {
     local dir=$1
     local repo_url=$2
@@ -33,9 +35,9 @@ clone_or_pull_repo() {
 }
 
 declare -a repos=( 
-    "frontend|https://github.com/segment3d-app/segment3d-fe.git|.env"
-    "backend|https://github.com/segment3d-app/segment3d-be.git|app.env"
-    "storage|https://github.com/segment3d-app/segment3d-storage.git|app.env"
+    "frontend|https://github.com/segment3d-app/frontend.git|.env"
+    "backend|https://github.com/segment3d-app/backend.git|app.env"
+    "storage|https://github.com/segment3d-app/storage.git|app.env"
 )
 
 for repo in "${repos[@]}"; do
