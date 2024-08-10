@@ -36,8 +36,8 @@ clone_or_pull_repo() {
 
 declare -a repos=( 
     "frontend|https://github.com/segment3d-app/frontend.git|.env"
-    "backend|https://github.com/segment3d-app/backend.git|app.env"
-    "storage|https://github.com/segment3d-app/storage.git|app.env"
+    "backend|https://github.com/segment3d-app/backend.git|.env"
+    "storage|https://github.com/segment3d-app/storage.git|.env"
 )
 
 for repo in "${repos[@]}"; do
